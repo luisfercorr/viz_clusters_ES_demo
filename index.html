@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análisis de la cartera — Clusters y propuesta de matriz de estrategia</title>
+
+<!-- ============================================================
+     DATOS HORNEADOS POR EL FLUJO.
+     El flujo (acción "Redactar") reemplaza el marcador de datos por la salida
+     completa del agente clusterizador (las tres tablas con sus
+     marcadores ===TABLA_CLUSTERS===, ===TABLA_MATRIZ===, ===TABLA_VALIDACION===).
+     Va en un <script type="text/plain"> para no tener que escapar
+     comillas, comas ni saltos de línea del CSV. No lo edites a mano.
+     ============================================================ -->
+<script id="datos" type="text/plain">===TABLA_CLUSTERS===
+cluster_tematico,definicion_del_cluster,cantidad_resultados,cantidad_operaciones,operaciones_asociadas,divisiones_asociadas,ejemplos_de_RE_extraidos
+"Infraestructura digital de banda ancha y del Estado","Expandir y robustecer la infraestructura digital pública y la conectividad de banda ancha resiliente para servicios y sitios públicos.","4","4","ES-G1008;ES-G1010;ES-L1145;ES-L1168","IFD/CMF","ES-G1010 + OE1: Mejorar el acceso de conectividad a través de inversión en infraestructura digital; ES-L1168 + OE1: Expandir la infraestructura digital del Estado"
+"Habilidades digitales en ciudadanía y sector público","Desarrollar habilidades y competencias digitales en usuarios de servicios públicos y servidores para un uso efectivo de la infraestructura digital.","4","4","ES-G1008;ES-G1010;ES-L1145;ES-L1168","IFD/CMF","ES-G1008 + OE2: Reducir la brecha de habilidades y competencias digitales en los sitios públicos conectados; ES-L1168 + OE2: Aumentar las habilidades digitales para el uso de la infraestructura y servicios digitales del Estado"
+"Servicios de salud integrales, salud digital y resiliencia sanitaria","Modernizar la red de salud (digital, infraestructura y gestión), reforzar la respuesta a emergencias y avanzar en resultados prioritarios de salud pública.","9","4","ES-L1095;ES-L1160;ES-L1188;ES-G1004","SCL/HNP","ES-L1095 + OE2: Mejorar la accesibilidad y provisión de servicios hospitalarios; ES-L1160 + OE1: Mejorar el acceso y la cobertura mediante servicios de salud digital; ES-G1004 + OE1: Eliminar la malaria en El Salvador"
+"Trayectorias educativas y resiliencia del sistema","Consolidar trayectorias educativas completas con resiliencia climática y fortalecer la gestión y la calidad, incluyendo primera infancia.","7","7","ES-G1014;ES-J0001;ES-J0002;ES-L1167;ES-L1139;ES-O0008","SCL/EDU;SCL/MIG","ES-G1014 + O: Consolidar trayectorias educativas completas y su resiliencia al CC; ES-L1139 + OE1: Expandir y mejorar la calidad y cobertura de los servicios de primera infancia; ES-L1139 + OE3: Mejorar la efectividad de la gestión educativa"
+"Inclusión y continuidad educativa de jóvenes","Mejorar la inclusión, continuidad postsecundaria y transición al trabajo de jóvenes vulnerables con enfoque de género.","4","4","ES-L1139;ES-L1175;ES-O0023;ES-J0003","SCL/EDU;SCL/MIG","ES-L1139 + OE2: Ampliar y mejorar la calidad de la educación de los jóvenes vulnerables; ES-L1175 + O: Mejorar la continuidad educativa media y postsecundaria y la inserción laboral"
+"Sistemas estadísticos oficiales","Mejorar la calidad de las estadísticas oficiales y fortalecer la institucionalidad estadística para su uso en decisiones públicas y privadas.","3","2","ES-L1128;ES-L1179","IFD/ICS","ES-L1128 + OE1: Mejorar la calidad de las estadísticas oficiales en términos de ROCA; ES-L1128 + OE2: Fortalecer la institucionalidad de la ONEC"
+"Agua urbana y resiliencia a inundaciones","Mejorar la continuidad, eficiencia y gestión del agua urbana y reducir la vulnerabilidad a inundaciones en áreas metropolitanas.","6","3","ES-L1152;ES-L1171;ES-O0018","INE/WSA","ES-L1152 + OE1: Mejorar la continuidad de los servicios de agua potable en el AMSS; ES-L1171 + O: Reducir la vulnerabilidad a inundaciones en el AMSS"
+"Transporte y conectividad logística y urbana","Mejorar la calidad y resiliencia vial rural, fortalecer corredores y conectividad aérea y facilitar el comercio y la movilidad urbana.","6","5","ES-L1155;ES-L1185;ES-L1173;ES-L1157;ES-O0017","INE/TSP;PTI/TIN","ES-L1155 + OE1: Mejorar la calidad de servicio de los caminos no pavimentados; ES-L1185 + O: Mejorar la competitividad del transporte de carga en el Corredor Pacífico; ES-L1173 + O: Mejorar la conectividad aérea de pasajeros"
+"Energía: acceso y usos productivos con fortalecimiento institucional","Ampliar el acceso a la electricidad, promover usos productivos con enfoque de género y fortalecer capacidades para electrificación sostenible.","4","2","ES-L1158;ES-O0014","INE/ENE","ES-L1158 + OE1: Incrementar el acceso al servicio de energía eléctrica; ES-L1158 + OE3: Promover usos productivos de la energía con enfoque de género"
+"Financiamiento productivo y sostenible para MIPYME","Expandir el financiamiento a MIPYME para productividad, transformación digital y proyectos de eficiencia energética y renovables.","4","4","ES-L1156;ES-L1163;ES-L1162;ES-O0009","IFD/CMF","ES-L1156 + OE1: Promover la expansión del acceso a crédito productivo para MIPYME; ES-L1162 + OE1: Financiar inversiones de EE y ER en MIPYME"
+"Turismo sostenible y competitivo","Dinamizar el gasto, empleo formal e inversión turística, fortalecer la institucionalidad y la sostenibilidad ambiental de destinos.","5","1","ES-L1151","PTI/TIN","ES-L1151 + OE1: Aumentar el gasto turístico por visitante; ES-L1151 + OE5: Reforzar la sostenibilidad medioambiental de los destinos"
+"Desarrollo urbano y vivienda sostenible","Reducir el déficit habitacional con vivienda sostenible y fortalecer economías urbanas locales y capacidades municipales.","4","3","ES-L1165;ES-L1178;ES-L1172","IFD/CMF;CSD/HUD","ES-L1165 + OE1: Aumentar el acceso a crédito hipotecario para vivienda de interés social; ES-L1172 + O: Fortalecer las economías locales mediante mejores servicios e infraestructura urbana"
+"Protección social responsiva a choques","Integrar un sistema de protección social responsivo a choques e implementar transferencias y servicios de DIT para hogares vulnerables.","2","1","ES-L1159","SCL/SPL","ES-L1159 + OE1: Crear acceso a un sistema integrado de protección social responsivo; ES-L1159 + OE2: Crear acceso a TM y servicios de DIT de calidad"
+"Gestión financiera de riesgos de desastres","Mejorar la gestión financiera de riesgos catastróficos mediante financiamiento contingente estable y de rápido acceso.","1","1","ES-O0011","IFD/CMF","ES-O0011 + O: Mejorar la gestión financiera de riesgos de desastres y salud pública con financiamiento contingente"
+"Inversión y clima de negocios","Promover la atracción de inversión, principalmente extranjera, para el desarrollo productivo.","2","2","ES-L1176;ES-L1186","PTI/TIN","ES-L1176 + O: Aumentar la inversión, principalmente extranjera; ES-L1186 + O: Contribuir al desarrollo productivo del país"
+
+===TABLA_MATRIZ===
+area_prioritaria,objetivo_estrategico,resultado_esperado_propuesto,operaciones_asociadas,divisiones_asociadas,evidencia_textual_representativa,justificacion_logica_vertical
+"Desarrollo humano e inclusión social","Mejorar el acceso y la calidad de los servicios de salud","Modernizar la salud digital e integrar los servicios","ES-L1160","SCL/HNP","[OE] Mejorar el acceso y la cobertura de la red de servicios mediante el fortalecimiento e integración de los servicios de salud digital (ES-L1160)","La digitalización e integración habilitan continuidad de atención y eficiencia (RE) que mejoran calidad y acceso (OE) contribuyendo al desarrollo humano (AP)"
+"Desarrollo humano e inclusión social","Mejorar el acceso y la calidad de los servicios de salud","Ampliar la cobertura y capacidad de la red hospitalaria","ES-L1095;ES-L1160;ES-L1188","SCL/HNP","[OE] Mejorar la accesibilidad y provisión de servicios hospitalarios (ES-L1095); [O] Mejorar servicios de atención especializada de alta complejidad (ES-L1188)","La expansión y mejora hospitalaria (RE) aumentan oferta efectiva (OE) impactando resultados de salud (AP)"
+"Desarrollo humano e inclusión social","Mejorar el acceso y la calidad de los servicios de salud","Mejorar la eficiencia de la red pública de salud","ES-L1095;ES-L1160","SCL/HNP","[OE] Mejorar la eficiencia de la gestión de la red pública de salud (ES-L1095); [OE] Mejorar la eficiencia en la provisión de servicios de apoyo y emergencias (ES-L1160)","La eficiencia operativa (RE) reduce cuellos de botella y costos (OE) elevando desempeño sanitario (AP)"
+"Desarrollo humano e inclusión social","Mejorar el acceso y la calidad de los servicios de salud","Eliminar la malaria","ES-G1004","SCL/HNP","[OE] Malaria Elimination in El Salvador (ES-G1004)","La eliminación de una enfermedad prioritaria (RE) produce un resultado de salud público concreto (OE) fortaleciendo el bienestar (AP)"
+"Desarrollo humano e inclusión social","Mejorar la cobertura y la calidad educativa","Consolidar trayectorias educativas con resiliencia al cambio climático","ES-G1014;ES-J0001;ES-J0002;ES-L1167","SCL/EDU;SCL/MIG","[O] Consolidar trayectorias educativas completas y su resiliencia al CC (ES-G1014; ES-L1167)","Consolidar trayectorias con resiliencia (RE) mejora acceso, aprendizaje y promoción (OE) elevando capital humano (AP)"
+"Desarrollo humano e inclusión social","Mejorar la cobertura y la calidad educativa","Fortalecer los servicios de primera infancia","ES-L1139","SCL/EDU","[OE] Expandir y mejorar la calidad y cobertura de los servicios de primera infancia (ES-L1139)","La expansión y calidad en primera infancia (RE) elevan aprendizajes y equidad (OE) fortaleciendo desarrollo humano (AP)"
+"Desarrollo humano e inclusión social","Promover inclusión y trayectorias de jóvenes","Mejorar la inclusión y continuidad educativa de jóvenes vulnerables","ES-L1139;ES-J0001","SCL/EDU;SCL/MIG","[OE] Ampliar y mejorar la calidad de la educación de los jóvenes vulnerables con enfoque de género (ES-L1139)","La inclusión y permanencia (RE) elevan la finalización y habilidades (OE) reduciendo brechas (AP)"
+"Desarrollo humano e inclusión social","Promover inclusión y trayectorias de jóvenes","Facilitar la transición a la educación postsecundaria y al trabajo","ES-L1175;ES-O0023;ES-J0003","SCL/EDU;SCL/MIG","[O] Mejorar la continuidad educativa postsecundaria y la inserción laboral (ES-L1175; ES-O0023; ES-J0003)","Facilitar la transición (RE) aumenta continuidad y empleabilidad (OE) fortaleciendo inclusión (AP)"
+"Desarrollo humano e inclusión social","Fortalecer la protección social","Integrar un sistema de protección social responsivo a choques","ES-L1159","SCL/SPL","[OE] Crear el acceso inclusivo a un sistema integrado de protección social responsivo a choques (ES-L1159)","Integrar el sistema (RE) habilita respuesta oportuna (OE) protegiendo hogares vulnerables (AP)"
+"Infraestructura sostenible y resiliencia climática","Mejorar la seguridad hídrica urbana y la resiliencia","Mejorar la continuidad del servicio de agua potable en el AMSS","ES-L1152","INE/WSA","[OE] Mejorar la continuidad de los servicios de agua potable en el AMSS (ES-L1152)","Mejorar continuidad (RE) eleva calidad del servicio (OE) y bienestar urbano resiliente (AP)"
+"Infraestructura sostenible y resiliencia climática","Mejorar la seguridad hídrica urbana y la resiliencia","Reducir las pérdidas de agua no contabilizada en el AMSS","ES-L1152","INE/WSA","[OE] Reducir los niveles de Agua no Contabilizada en el AMSS (ES-L1152)","Reducir pérdidas (RE) mejora eficiencia y sostenibilidad (OE) reforzando resiliencia hídrica (AP)"
+"Infraestructura sostenible y resiliencia climática","Mejorar la seguridad hídrica urbana y la resiliencia","Reducir la vulnerabilidad a inundaciones en el AMSS","ES-L1171;ES-O0018","INE/WSA","[O] Contribuir a reducir la vulnerabilidad del AMSS a inundaciones (ES-L1171)","La reducción del riesgo de inundaciones (RE) protege poblaciones e infraestructura (OE) aumentando resiliencia (AP)"
+"Infraestructura sostenible y resiliencia climática","Ampliar la conectividad y la logística resiliente","Mejorar la calidad de servicio de la red vial rural y terciaria","ES-L1155","INE/TSP","[OE] Mejorar la calidad de servicio de los caminos no pavimentados (ES-L1155)","Mejorar calidad vial (RE) reduce costos y tiempos (OE) impulsando conectividad resiliente (AP)"
+"Infraestructura sostenible y resiliencia climática","Ampliar la conectividad y la logística resiliente","Modernizar la conectividad del Corredor Pacífico","ES-L1185","INE/TSP","[O] Mejorar la competitividad del transporte de carga en el Corredor Pacífico (ES-L1185)","Modernizar el corredor (RE) mejora logística (OE) fortaleciendo infraestructura productiva (AP)"
+"Infraestructura sostenible y resiliencia climática","Ampliar la conectividad y la logística resiliente","Mejorar la conectividad aérea de pasajeros","ES-L1173","INE/TSP","[O] Mejorar la conectividad aérea para pasajeros del AIES (ES-L1173)","Mejorar conectividad aérea (RE) eleva calidad del servicio y flujo de pasajeros (OE) apoyando conectividad nacional e internacional (AP)"
+"Infraestructura sostenible y resiliencia climática","Universalizar el acceso a energía sostenible","Ampliar el acceso al servicio de energía eléctrica","ES-L1158;ES-O0014","INE/ENE","[OE] Incrementar el acceso al servicio de energía eléctrica (ES-L1158); [O] Transición energética justa para acceso universal (ES-O0014)","Ampliar acceso (RE) cierra brechas energéticas (OE) habilitando inclusión y resiliencia (AP)"
+"Competitividad e innovación del sector privado y modernización del Estado","Modernizar el Estado y la economía digital","Expandir la infraestructura digital del Estado","ES-L1168","IFD/CMF","[OE] Expandir la infraestructura digital del Estado (ES-L1168)","La infraestructura digital pública (RE) habilita servicios modernos (OE) contribuyendo a un Estado más eficiente (AP)"
+"Competitividad e innovación del sector privado y modernización del Estado","Modernizar el Estado y la economía digital","Desarrollar habilidades digitales en ciudadanos y servidores públicos","ES-G1008;ES-G1010;ES-L1145;ES-L1168","IFD/CMF","[OE] Reducir la brecha de habilidades digitales en sitios públicos conectados (ES-G1008/ES-L1145); [OE] Aumentar habilidades digitales para uso de servicios del Estado (ES-L1168)","Las habilidades digitales (RE) aseguran uso efectivo de la infraestructura y servicios digitales (OE) apoyando modernización estatal (AP)"
+"Competitividad e innovación del sector privado y modernización del Estado","Impulsar la productividad y la sostenibilidad empresarial","Ampliar el financiamiento productivo a MIPYME","ES-L1156;ES-L1163;ES-O0009","IFD/CMF","[OE] Promover la expansión del acceso a crédito productivo para MIPYME (ES-L1156); [OE] Financiar transformación tecnológica y digital (ES-L1163)","El financiamiento dirigido (RE) habilita inversiones y crecimiento de MIPYME (OE) impulsando competitividad (AP)"
+"Competitividad e innovación del sector privado y modernización del Estado","Impulsar la productividad y la sostenibilidad empresarial","Impulsar inversiones en eficiencia energética y energías renovables en MIPYME","ES-L1162","IFD/CMF","[OE] Apoyar con financiamiento para inversiones que reditúen en AE y RE (ES-L1162)","El financiamiento verde (RE) mejora eficiencia y reduce emisiones (OE) fortaleciendo competitividad sostenible (AP)"
+"Competitividad e innovación del sector privado y modernización del Estado","Dinamizar sectores con alto potencial","Dinamizar la competitividad turística sostenible","ES-L1151","PTI/TIN","[OE] Aumentar gasto, empleo formal e inversión turística y reforzar sostenibilidad de destinos (ES-L1151)","La mejora de desempeño y sostenibilidad en turismo (RE) eleva competitividad sectorial (OE) contribuyendo al crecimiento impulsado por el sector privado (AP)"
+
+===TABLA_VALIDACION===
+nivel_o_relacion,chequeo,resultado,observacion
+"General","Lógica invertida (RE → OE → AP)","PASA","Todos los RE son más específicos que sus OE y contribuyen causalmente a ellos; los OE contribuyen a AP."
+"General","Lógica duplicada entre niveles","PASA","Los enunciados en cada nivel usan universos distintos y especificidad creciente; no se repiten con distinta redacción."
+"General","Lógica inconsistente","PASA","Se mantuvo coherencia sectorial y causal entre cada RE y su OE, y entre cada OE y su AP."
+"General","Lógica bifurcada (un RE u OE hacia múltiples niveles superiores)","PASA","Cada RE mapea a un solo OE y cada OE a una sola AP."
+"General","Pertenencia temática a la AP","PASA","Salud y educación bajo Desarrollo humano; agua, transporte y energía bajo Infraestructura y resiliencia; digital, MIPYME y turismo bajo Competitividad y modernización."
+"Objetivos estratégicos","Forma verbal del OE en infinitivo/nominal","PASA","Todos los OE inician con verbos en infinitivo o enunciados nominales permitidos."
+"Resultados esperados","Forma verbal del RE en infinitivo/nominal sin participio pasado","PASA","Todos los RE están en infinitivo o nominal directo; no se usan participios como forma principal."
+"Resultados esperados","Atomicidad del RE (no compuesto)","PASA","Cada RE expresa una única transformación medible; se evitó unir logros disímiles en una sola frase."
+"Matriz","Diferenciación de niveles (grado de especificidad)","PASA","AP son macro; OE sectoriales/temáticos; RE concretos y accionables con indicadores naturales claros."
+"Selección","Conexión causal clara","PASA","Ejemplos: salud digital → mejor acceso y continuidad; reducción de ANC → eficiencia hídrica; financiamiento MIPYME → inversión productiva."</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>if(!window.d3){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"><\/scr'+'ipt>');}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#e6f2fb;--panel:#d5e8f5;--ink:#1a2238;--muted:#5d6b85;--line:#bcd4e6;
+    --strong:#1f4f8a;--mid:#378add;--weak:#7fb2e5;--lightfill:#b5d4f4;
+    --re:#c59dd4;--accent:#1f4f8a;
+    --font:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--font);}
+  header{padding:24px 36px 14px;border-bottom:1px solid var(--line);background:#d5e8f5;}
+  h1{font-size:22px;margin:0 0 5px;font-weight:600;color:var(--ink);}
+  .sub{font-size:12.5px;color:var(--muted);line-height:1.5;max-width:1180px;font-weight:400;}
+
+  .stats{display:flex;gap:28px;flex-wrap:wrap;margin:14px 36px 4px;}
+  .stat .n{font-size:26px;font-weight:700;color:var(--ink);}
+  .stat .l{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:500;}
+  .tabs{display:flex;gap:4px;margin:14px 36px 0;border-bottom:2px solid var(--line);flex-wrap:wrap;}
+  .tab{padding:9px 18px;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer;border:2px solid transparent;border-bottom:none;border-radius:8px 8px 0 0;background:transparent;transition:all .15s;font-family:var(--font);}
+  .tab:hover{color:var(--ink);background:rgba(31,79,138,.05);}
+  .tab.active{color:var(--accent);background:#fff;border-color:var(--line);border-bottom:2px solid #fff;margin-bottom:-2px;}
+  .tab-content{display:none;}
+  .tab-content.active{display:block;}
+  .tab-intro{margin:12px 36px 0;font-size:12px;color:var(--muted);font-style:italic;line-height:1.5;max-width:1180px;}
+  .chart-wrap{margin:8px 36px 30px;}
+  svg{display:block;width:100%;background:transparent;font-family:var(--font);}
+  .tip{position:fixed;pointer-events:none;background:#0c2b52;border:1px solid var(--line);border-radius:8px;padding:11px 14px;font-size:12px;color:#fff;max-width:460px;opacity:0;transition:opacity .12s;box-shadow:0 8px 26px rgba(0,0,0,.28);z-index:30;font-weight:400;line-height:1.5;}
+  .tip b{color:#cfe4fb;}
+  .legend-cats{display:flex;flex-wrap:wrap;gap:6px 18px;margin:6px 36px 0;font-size:11.5px;color:var(--muted);}
+  .legend-cats .it{display:flex;align-items:center;gap:6px;}
+  .legend-cats .sw{width:12px;height:12px;border-radius:3px;flex:none;}
+  footer{padding:14px 36px 30px;font-size:10.5px;color:var(--muted);border-top:1px solid var(--line);font-weight:400;line-height:1.5;}
+  .node-label{font-size:11px;fill:var(--ink);font-weight:500;}
+
+  /* Barra de acciones de tabla (copiar / descargar) */
+  .tblbar{margin:12px 36px 0;display:flex;gap:10px;flex-wrap:wrap;}
+  .tblbtn{background:#fff;color:var(--accent);border:1.5px solid var(--accent);padding:7px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .15s;}
+  .tblbtn:hover{background:var(--accent);color:#fff;}
+  .tblwrap{margin:10px 36px 30px;overflow-x:auto;}
+
+  /* Tabla estilo "matriz de resultados" (como la captura) */
+  table.matriz{border-collapse:collapse;width:100%;min-width:820px;font-size:12px;background:#fff;}
+  table.matriz th{background:var(--strong);color:#fff;font-weight:600;padding:9px 12px;text-align:left;border:1px solid #14487d;font-size:11.5px;}
+  table.matriz th.num{text-align:center;width:70px;}
+  table.matriz td{padding:9px 12px;border:1px solid var(--line);vertical-align:top;line-height:1.45;}
+  table.matriz tr.pillar td{background:var(--strong);color:#fff;font-weight:700;font-size:12px;letter-spacing:.2px;text-align:center;}
+  table.matriz td.so{background:#eaf3fb;font-weight:600;color:var(--ink);width:210px;}
+  table.matriz td.er{background:#fff;}
+  table.matriz td.num{text-align:center;font-weight:600;width:70px;}
+  table.matriz td.div{color:var(--muted);width:190px;font-size:11.5px;}
+  table.matriz tr.er-row:hover td.er,table.matriz tr.er-row:hover td.num,table.matriz tr.er-row:hover td.div{background:#f2f8fe;}
+
+  /* Tabla de clusters */
+  table.clus{border-collapse:collapse;width:100%;min-width:900px;font-size:12px;background:#fff;}
+  table.clus th{background:var(--strong);color:#fff;font-weight:600;padding:9px 12px;text-align:left;border:1px solid #14487d;font-size:11.5px;}
+  table.clus th.num{text-align:center;width:64px;}
+  table.clus td{padding:9px 12px;border:1px solid var(--line);vertical-align:top;line-height:1.45;}
+  table.clus td.name{font-weight:600;width:210px;}
+  table.clus td.num{text-align:center;font-weight:600;}
+  table.clus td.muted{color:var(--muted);font-size:11.5px;}
+  table.clus tr:nth-child(even) td{background:#f6fafe;}
+  table.clus tr:hover td{background:#eef6fd;}
+  .empty-note{margin:40px 36px;font-size:14px;color:var(--muted);}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="page-title">Análisis de la cartera — Clusters temáticos y propuesta de matriz de estrategia</h1>
+  <div class="sub">Análisis de tópicos de los <strong>Resultados Esperados de las operaciones</strong> y propuesta de una nueva matriz de estrategia con jerarquía <strong>Área Prioritaria › Objetivo Estratégico › Resultado Esperado</strong>. Fuente: agente clusterizador.</div>
+</header>
+
+<div id="banner" style="display:none;margin:14px 36px 0;padding:12px 16px;border-radius:8px;background:#fdecea;border:1px solid #f5c2bd;color:#8a1c10;font-size:12.5px;line-height:1.55;"></div>
+
+<div class="stats" id="stats"></div>
+
+<div class="tabs">
+  <button class="tab active" data-tab="barras" onclick="switchTab('barras')">Clusters — ranking</button>
+  <button class="tab" data-tab="burbujas" onclick="switchTab('burbujas')">Clusters — burbujas</button>
+  <button class="tab" data-tab="clustabla" onclick="switchTab('clustabla')">Clusters — tabla</button>
+  <button class="tab" data-tab="matriztabla" onclick="switchTab('matriztabla')">Matriz — tabla</button>
+</div>
+
+<div class="tab-content active" id="tab-barras">
+  <div class="tab-intro">Clusters ordenados por cantidad de resultados. La barra mide los resultados esperados agrupados en cada tema; al lado se indica la cantidad de operaciones. Pase el cursor por cada barra para ver la definición y las divisiones.</div>
+  <div class="chart-wrap"><svg id="chart-barras"></svg></div>
+</div>
+
+<div class="tab-content" id="tab-burbujas">
+  <div class="tab-intro">Cada burbuja es un cluster, todas del mismo tamaño. Eje horizontal: cantidad de resultados. Eje vertical: cantidad de operaciones. Un color por cluster. Cuando varios clusters coinciden en ambos ejes, se separan un poco para que se distingan.</div>
+  <div class="legend-cats" id="legend-burbujas"></div>
+  <div class="chart-wrap"><svg id="chart-burbujas"></svg></div>
+</div>
+
+<div class="tab-content" id="tab-clustabla">
+  <div class="tab-intro">Tabla de clusters temáticos con sus conteos, operaciones, divisiones y ejemplos de resultados. Copiá o descargá para trabajarla en Excel.</div>
+  <div class="tblbar">
+    <button class="tblbtn" id="cp-clus">Copiar para Excel</button>
+    <button class="tblbtn" id="dl-clus">Descargar CSV</button>
+  </div>
+  <div class="tblwrap" id="tbl-clus"></div>
+</div>
+
+<div class="tab-content" id="tab-matriztabla">
+  <div class="tab-intro">Matriz de resultados propuesta, agrupada por Área Prioritaria (pilar) y Objetivo Estratégico. Copiá o descargá para trabajarla en Excel (la copia trae una fila por Resultado Esperado, con todas las columnas).</div>
+  <div class="tblbar">
+    <button class="tblbtn" id="cp-mat">Copiar para Excel</button>
+    <button class="tblbtn" id="dl-mat">Descargar CSV</button>
+  </div>
+  <div class="tblwrap" id="tbl-mat"></div>
+</div>
+
+<div class="tip" id="tip"></div>
+<footer>
+  RE = Resultado Esperado de la operación (objetivo específico). La matriz propuesta respeta jerarquía estricta sin bifurcación: cada Resultado Esperado pertenece a un único Objetivo Estratégico, y cada Objetivo a una única Área Prioritaria. La tabla de validación del agente no se representa en esta vista.
+</footer>
+
+<script>
+/* ============================================================
+   1) PARSER CSV — respeta comillas dobles y comas/saltos internos.
+   ============================================================ */
+function parseCSV(text){
+  const rows=[]; let i=0, field='', row=[], inQ=false;
+  text=text.replace(/\r\n/g,'\n').replace(/\r/g,'\n');
+  while(i<text.length){
+    const c=text[i];
+    if(inQ){
+      if(c==='"'){ if(text[i+1]==='"'){ field+='"'; i+=2; continue; } inQ=false; i++; continue; }
+      field+=c; i++; continue;
+    } else {
+      if(c==='"'){ inQ=true; i++; continue; }
+      if(c===','){ row.push(field); field=''; i++; continue; }
+      if(c==='\n'){ row.push(field); rows.push(row); row=[]; field=''; i++; continue; }
+      field+=c; i++; continue;
+    }
+  }
+  if(field.length||row.length){ row.push(field); rows.push(row); }
+  return rows.filter(r=>r.some(c=>c.trim()!==''));
+}
+function csvToObjects(text){
+  const parsed=parseCSV(text);
+  if(parsed.length<2) return [];
+  const header=parsed[0].map(h=>h.trim().toLowerCase());
+  const out=[];
+  for(let k=1;k<parsed.length;k++){
+    const r=parsed[k]; const o={};
+    header.forEach((h,idx)=>{ o[h]=(r[idx]!==undefined?r[idx]:'').trim(); });
+    out.push(o);
+  }
+  return out;
+}
+function pick(obj,names){
+  for(const n of names){ if(obj[n]!==undefined && obj[n]!=='') return obj[n]; }
+  const keys=Object.keys(obj);
+  for(const n of names){ const hit=keys.find(k=>k.indexOf(n)!==-1); if(hit && obj[hit]!=='') return obj[hit]; }
+  return '';
+}
+function splitList(s){ if(!s) return []; const sep=s.indexOf(';')!==-1?';':','; return s.split(sep).map(x=>x.trim()).filter(x=>x!==''); }
+
+/* ============================================================
+   2) PARTIR EL BLOB por marcadores de tabla.
+   ============================================================ */
+function extractTable(blob,startMarker,endMarkers){
+  const name=startMarker.replace(/=/g,'').trim();
+  const reStart=new RegExp('===\\s*'+name+'\\s*===','i');
+  const mS=reStart.exec(blob); if(!mS) return '';
+  let from=mS.index+mS[0].length, end=blob.length;
+  endMarkers.forEach(em=>{ const n=em.replace(/=/g,'').trim(); const re=new RegExp('===\\s*'+n+'\\s*===','i'); re.lastIndex=from; const m=re.exec(blob.slice(from)); if(m){ const abs=from+m.index; if(abs<end) end=abs; } });
+  return blob.slice(from,end).trim();
+}
+
+/* ============================================================
+   3) DATOS DE EJEMPLO — se muestran si el flujo no reemplazó el marcador de datos.
+   ============================================================ */
+const EJEMPLO = `
+===TABLA_CLUSTERS===
+cluster_tematico,definicion_del_cluster,cantidad_resultados,cantidad_operaciones,operaciones_asociadas,divisiones_asociadas,ejemplos_de_RE_extraidos
+"Infraestructura verde y resiliencia climática","Restauración de cobertura forestal, infraestructura verde y adaptación al cambio climático","16","6","DR-L1001;DR-L1002;DR-L1003;DR-L1004;DR-L1005;DR-L1006","CSD;RND","Aumenta la superficie forestal restaurada; Mejora la resiliencia de infraestructura pública"
+"Generación y transmisión eléctrica","Inversión en generación y transmisión de energía eléctrica del sector público","16","3","DR-L1010;DR-L1011;DR-L1012","INE","Incrementa la capacidad de transmisión; Aumenta la generación renovable"
+"Salud y atención primaria","Servicios de salud y atención primaria de provisión pública","11","5","DR-L1020;DR-L1021;DR-L1022;DR-L1023;DR-L1024","SPH","Mejora la cobertura de atención primaria; Reduce los tiempos de espera"
+"Gestión pública e institucional","Fortalecimiento institucional y gestión de información del gobierno","10","3","DR-L1030;DR-L1031;DR-L1032","IFD","Mejora la eficiencia de la gestión pública; Fortalece los sistemas de información"
+"Protección social","Transferencias y programas de apoyo a hogares vulnerables","10","4","DR-L1040;DR-L1041;DR-L1042;DR-L1043","SPH","Amplía la cobertura de protección social; Mejora la focalización"
+"Educación y capital humano","Servicios educativos y desarrollo de capital humano","10","4","DR-L1050;DR-L1051;DR-L1052;DR-L1053","SPH","Mejora los aprendizajes; Amplía el acceso a formación técnica"
+"Apoyo productivo y MiPYME","Apoyo productivo y financiamiento al sector privado y MiPYME","8","4","DR-L1060;DR-L1061;DR-L1062;DR-L1063","IFD;CSD","Incrementa el acceso a financiamiento de MiPYME; Mejora la productividad"
+"Agua potable y saneamiento","Infraestructura de agua potable y saneamiento del sector público","5","2","DR-L1070;DR-L1071","WSA","Aumenta la cobertura de agua potable; Mejora el tratamiento de aguas residuales"
+"Equipamiento de salud","Infraestructura y equipamiento de salud para la población","5","1","DR-L1080","SPH","Amplía el equipamiento hospitalario"
+"Seguridad ciudadana","Servicios de seguridad ciudadana y gestión policial","5","2","DR-L1090;DR-L1091","IFD","Reduce la incidencia delictiva; Mejora la capacidad policial"
+"Conectividad digital","Banda ancha e infraestructura digital","3","1","DR-L1100","IFD","Amplía la cobertura de banda ancha"
+"Empleo y empleabilidad","Servicios de empleo y empleabilidad","3","1","DR-L1110","SPH","Mejora la inserción laboral"
+"Transporte y movilidad urbana","Infraestructura de transporte y movilidad urbana","2","1","DR-L1120","TSP","Mejora la movilidad urbana"
+===TABLA_MATRIZ===
+area_prioritaria,objetivo_estrategico,resultado_esperado_propuesto,operaciones_asociadas,divisiones_asociadas,evidencia_textual_representativa,justificacion_logica_vertical
+"Capital humano y protección social","Ampliar el acceso a servicios de salud","Aumenta la cobertura efectiva de atención primaria","DR-L1020;DR-L1021;DR-L1022","SPH","Mejora la cobertura de atención primaria en zonas rurales","El resultado (cobertura de APS) es más específico que el objetivo (acceso a salud) y contribuye directamente a él."
+"Capital humano y protección social","Ampliar el acceso a servicios de salud","Amplía el equipamiento hospitalario disponible","DR-L1080","SPH","Amplía el equipamiento hospitalario","El equipamiento es un resultado concreto que habilita el acceso a salud."
+"Capital humano y protección social","Fortalecer la protección social y la empleabilidad","Amplía la cobertura de los programas de protección social","DR-L1040;DR-L1041","SPH","Amplía la cobertura de protección social","La cobertura de programas es medible y contribuye a la protección social del área."
+"Capital humano y protección social","Fortalecer la protección social y la empleabilidad","Mejora la inserción laboral de la población objetivo","DR-L1110","SPH","Mejora la inserción laboral","La inserción laboral es un resultado accionable del objetivo de empleabilidad."
+"Sostenibilidad ambiental y energética","Impulsar la transición energética","Incrementa la capacidad de generación y transmisión renovable","DR-L1010;DR-L1011;DR-L1012","INE","Incrementa la capacidad de transmisión y la generación renovable","La capacidad instalada es el resultado medible del objetivo de transición energética."
+"Sostenibilidad ambiental y energética","Fortalecer la resiliencia climática del territorio","Aumenta la superficie con cobertura forestal restaurada","DR-L1001;DR-L1002;DR-L1003","CSD;RND","Aumenta la superficie forestal restaurada","La superficie restaurada es un resultado concreto que contribuye a la resiliencia climática."
+"Desarrollo productivo y competitividad","Mejorar el acceso al financiamiento productivo","Incrementa el acceso a financiamiento de las MiPYME","DR-L1060;DR-L1061","IFD;CSD","Incrementa el acceso a financiamiento de MiPYME","El acceso a crédito es más específico que el objetivo de financiamiento productivo."
+"Desarrollo productivo y competitividad","Modernizar la infraestructura habilitante","Amplía la cobertura de banda ancha","DR-L1100","IFD","Amplía la cobertura de banda ancha","La conectividad habilita la competitividad; es un resultado medible del objetivo."
+===TABLA_VALIDACION===
+nivel_o_relacion,chequeo,resultado,observacion
+"RE->OE","Lógica invertida","PASA","Los RE son más específicos que los OE."
+`;
+
+/* ============================================================
+   4) ESTADO + TOOLTIP
+   ============================================================ */
+let CLUSTERS=[], MATRIZ=[];
+const tip=d3.select("#tip");
+function showTip(html,ev){tip.html(html).style("opacity",1).style("left",Math.min(ev.clientX+14,window.innerWidth-480)+"px").style("top",(ev.clientY+14)+"px");}
+function hideTip(){tip.style("opacity",0);}
+function setStatus(msg){ const e=document.getElementById("loadstatus"); if(e) e.textContent=msg; }
+function showBanner(html){ const b=document.getElementById("banner"); if(b){ b.innerHTML=html; b.style.display="block"; } }
+function hideBanner(){ const b=document.getElementById("banner"); if(b) b.style.display="none"; }
+function looksBaked(raw){ if(!raw) return false; const r=raw.trim(); const MARK='@@'+'DATOS'+'@@'; return r.indexOf(MARK)===-1 && /===\s*TABLA_CLUSTERS/i.test(r); }
+
+function loadFromBlob(blob){
+  hideBanner();
+  // Normaliza comillas tipográficas que a veces emite el modelo (rompen el CSV)
+  blob=String(blob).replace(/[\u201C\u201D\u201E\u201F\u2033]/g,'"').replace(/[\u2018\u2019\u201A\u201B\u2032]/g,"'");
+
+  const clustersCsv=extractTable(blob,'===TABLA_CLUSTERS===',['===TABLA_MATRIZ===','===TABLA_VALIDACION===']);
+  const matrizCsv  =extractTable(blob,'===TABLA_MATRIZ===',['===TABLA_VALIDACION===']);
+
+  CLUSTERS=csvToObjects(clustersCsv).map(o=>{
+    const ops=splitList(pick(o,['operaciones_asociadas','operaciones','proyectos']));
+    const divs=splitList(pick(o,['divisiones_asociadas','divisiones']));
+    const nResRaw=pick(o,['cantidad_resultados','resultados','n_resultados']);
+    const nOpsRaw=pick(o,['cantidad_operaciones','cantidad_proyectos','operaciones_count']);
+    const nOps=nOpsRaw!==''?(+nOpsRaw||ops.length):ops.length;
+    const nRes=nResRaw!==''?(+nResRaw||nOps):nOps;
+    return { name:pick(o,['cluster_tematico','cluster','tema'])||'(sin nombre)',
+             def:pick(o,['definicion_del_cluster','definicion']),
+             egs:pick(o,['ejemplos_de_re_extraidos','ejemplos_de_re','ejemplos']),
+             ops, divs, nOps, nRes };
+  }).filter(c=>c.name!=='(sin nombre)'||c.nRes>0);
+  CLUSTERS.sort((a,b)=>b.nRes-a.nRes);
+
+  MATRIZ=csvToObjects(matrizCsv).map(o=>({
+    ap:pick(o,['area_prioritaria','area']),
+    oe:pick(o,['objetivo_estrategico','objetivo']),
+    re:pick(o,['resultado_esperado_propuesto','resultado_esperado','resultado']),
+    ops:splitList(pick(o,['operaciones_asociadas','operaciones'])),
+    divs:splitList(pick(o,['divisiones_asociadas','divisiones'])),
+    ev:pick(o,['evidencia_textual_representativa','evidencia']),
+    jl:pick(o,['justificacion_logica_vertical','justificacion'])
+  })).filter(m=>m.ap && m.oe && m.re);
+
+  renderAll();
+}
+
+/* ============================================================
+   5) ESTADÍSTICAS
+   ============================================================ */
+function computeStats(){
+  const totRes=d3.sum(CLUSTERS,c=>c.nRes);
+  const aps=new Set(MATRIZ.map(m=>m.ap));
+  const oes=new Set(MATRIZ.map(m=>m.ap+'||'+m.oe));
+  document.getElementById("stats").innerHTML=`
+    <div class="stat"><div class="n">${CLUSTERS.length}</div><div class="l">Clusters temáticos</div></div>
+    <div class="stat"><div class="n">${totRes}</div><div class="l">Resultados analizados</div></div>
+    <div class="stat"><div class="n">${aps.size}</div><div class="l">Áreas prioritarias</div></div>
+    <div class="stat"><div class="n">${oes.size}</div><div class="l">Objetivos estratégicos</div></div>
+    <div class="stat"><div class="n">${MATRIZ.length}</div><div class="l">Resultados esperados propuestos</div></div>`;
+}
+function blueScale(){ const max=d3.max(CLUSTERS,c=>c.nRes)||1; return d3.scaleLinear().domain([0,max]).range(["#b5d4f4","#0c447c"]); }
+const CATCOLORS=["#e6194b","#3cb44b","#4363d8","#f58231","#911eb4","#00a5a5","#f032e6","#9a6324","#1a9850","#c51b7d","#2c7fb8","#d95f0e","#6a3d9a","#008080","#e7298a","#525252"];
+
+/* ============================================================
+   6) BARRAS RANKING
+   ============================================================ */
+function drawBarras(){
+  const svg=d3.select("#chart-barras"); svg.selectAll("*").remove();
+  if(!CLUSTERS.length) return emptySvg(svg,"No hay clusters para mostrar.");
+  const rowH=30, top=10, bottom=10, left=250, right=110;
+  const H=top+bottom+CLUSTERS.length*rowH, Wtot=1180;
+  svg.attr("viewBox","0 0 "+Wtot+" "+H);
+  const max=d3.max(CLUSTERS,c=>c.nRes)||1;
+  const x=d3.scaleLinear().domain([0,max]).range([0,Wtot-left-right]);
+  const col=blueScale();
+  const g=svg.selectAll("g.row").data(CLUSTERS).enter().append("g").attr("class","row")
+    .attr("transform",(d,i)=>"translate(0,"+(top+i*rowH)+")").style("cursor","default")
+    .on("mousemove",(ev,d)=>showTip(`<b>${d.name}</b><br>${d.def||''}<br><br>Resultados: ${d.nRes} · Operaciones: ${d.nOps}${d.divs.length?'<br>Divisiones: '+d.divs.join(', '):''}`,ev))
+    .on("mouseleave",hideTip);
+  g.append("text").attr("x",left-12).attr("y",rowH/2+4).attr("text-anchor","end").attr("class","node-label").style("fill","var(--muted)").text(d=>d.name.length>42?d.name.slice(0,40)+'…':d.name);
+  g.append("rect").attr("x",left).attr("y",7).attr("height",rowH-14).attr("rx",4).attr("width",d=>Math.max(2,x(d.nRes))).attr("fill",d=>col(d.nRes));
+  g.append("text").attr("x",d=>left+x(d.nRes)+8).attr("y",rowH/2+4).style("font-size","11px").style("font-weight","600").style("fill","var(--ink)").text(d=>d.nRes+" res · "+d.nOps+" oper");
+}
+
+/* ============================================================
+   7) BURBUJAS MULTICOLOR
+   ============================================================ */
+function drawBurbujas(){
+  const svg=d3.select("#chart-burbujas"); svg.selectAll("*").remove();
+  const legend=document.getElementById("legend-burbujas"); legend.innerHTML="";
+  if(!CLUSTERS.length) return emptySvg(svg,"No hay clusters para mostrar.");
+  const Wtot=1180, H=520, m={t:24,r:30,b:52,l:56};
+  svg.attr("viewBox","0 0 "+Wtot+" "+H);
+  const maxR=d3.max(CLUSTERS,c=>c.nRes)||1, maxO=d3.max(CLUSTERS,c=>c.nOps)||1;
+  const x=d3.scaleLinear().domain([0,maxR+1]).range([m.l,Wtot-m.r]);
+  const y=d3.scaleLinear().domain([0,maxO+1]).range([H-m.b,m.t]);
+  const R=24; // radio fijo: el tamaño ya no codifica ninguna métrica (los ejes ya dan la info)
+  x.ticks(8).forEach(t=>{ svg.append("line").attr("x1",x(t)).attr("x2",x(t)).attr("y1",m.t).attr("y2",H-m.b).attr("stroke","var(--line)").attr("stroke-opacity",.5);
+    svg.append("text").attr("x",x(t)).attr("y",H-m.b+18).attr("text-anchor","middle").style("font-size","11px").style("fill","var(--muted)").text(t); });
+  y.ticks(Math.min(maxO+1,8)).forEach(t=>{ if(!Number.isInteger(t))return; svg.append("line").attr("x1",m.l).attr("x2",Wtot-m.r).attr("y1",y(t)).attr("y2",y(t)).attr("stroke","var(--line)").attr("stroke-opacity",.5);
+    svg.append("text").attr("x",m.l-8).attr("y",y(t)+4).attr("text-anchor","end").style("font-size","11px").style("fill","var(--muted)").text(t); });
+  svg.append("text").attr("x",Wtot/2).attr("y",H-8).attr("text-anchor","middle").style("font-size","11.5px").style("fill","var(--muted)").text("Cantidad de resultados");
+  svg.append("text").attr("transform","rotate(-90)").attr("x",-H/2).attr("y",16).attr("text-anchor","middle").style("font-size","11.5px").style("fill","var(--muted)").text("Cantidad de operaciones");
+  // Separar burbujas que caen en las mismas coordenadas (mismos conteos) para que no se tapen
+  const pos=CLUSTERS.map(d=>({cx:x(d.nRes),cy:y(d.nOps)}));
+  const groups={}; CLUSTERS.forEach((d,i)=>{ const k=d.nRes+'|'+d.nOps; (groups[k]=groups[k]||[]).push(i); });
+  Object.keys(groups).forEach(k=>{ const idxs=groups[k]; if(idxs.length>1){ const rr=R+5; idxs.forEach((gi,j)=>{ const a=(2*Math.PI*j)/idxs.length - Math.PI/2; pos[gi].cx+=Math.cos(a)*rr; pos[gi].cy+=Math.sin(a)*rr; }); } });
+  svg.selectAll("circle.b").data(CLUSTERS).enter().append("circle").attr("class","b")
+    .attr("cx",(d,i)=>pos[i].cx).attr("cy",(d,i)=>pos[i].cy).attr("r",R)
+    .attr("fill",(d,i)=>CATCOLORS[i%CATCOLORS.length]).attr("fill-opacity",.85)
+    .attr("stroke","#ffffff").attr("stroke-width",1.5).style("cursor","default")
+    .on("mousemove",(ev,d)=>showTip(`<b>${d.name}</b><br>${d.def||''}<br><br>Resultados: ${d.nRes} · Operaciones: ${d.nOps}${d.divs.length?'<br>Divisiones: '+d.divs.join(', '):''}`,ev))
+    .on("mouseleave",hideTip);
+  CLUSTERS.forEach((d,i)=>{ const it=document.createElement("div"); it.className="it"; it.innerHTML=`<span class="sw" style="background:${CATCOLORS[i%CATCOLORS.length]}"></span>${d.name}`; legend.appendChild(it); });
+}
+
+/* ============================================================
+   8) TABLA DE CLUSTERS
+   ============================================================ */
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function drawClusTabla(){
+  const cont=document.getElementById("tbl-clus");
+  if(!CLUSTERS.length){ cont.innerHTML='<p class="empty-note">No hay clusters para mostrar.</p>'; return; }
+  let h='<table class="clus"><thead><tr><th>Cluster temático</th><th>Definición</th><th class="num">Resultados</th><th class="num">Operaciones</th><th>Divisiones</th><th>Ejemplos de RE</th></tr></thead><tbody>';
+  CLUSTERS.forEach(c=>{
+    h+=`<tr><td class="name">${esc(c.name)}</td><td class="muted">${esc(c.def)}</td><td class="num">${c.nRes}</td><td class="num">${c.nOps}</td><td class="muted">${esc(c.divs.join(', '))}</td><td class="muted">${esc(c.egs)}</td></tr>`;
+  });
+  cont.innerHTML=h+'</tbody></table>';
+}
+function clusRows(){
+  const headers=['Cluster temático','Definición','Resultados','Operaciones','Divisiones','Ejemplos de RE'];
+  const rows=CLUSTERS.map(c=>[c.name,c.def,c.nRes,c.nOps,c.divs.join('; '),c.egs]);
+  return {headers,rows};
+}
+
+/* ============================================================
+   9) JERARQUÍA AP -> OE -> RE (compartida por tabla y árbol)
+   ============================================================ */
+function groupMatriz(){
+  const apMap=new Map();
+  MATRIZ.forEach(m=>{
+    if(!apMap.has(m.ap)) apMap.set(m.ap,new Map());
+    const oeMap=apMap.get(m.ap);
+    if(!oeMap.has(m.oe)) oeMap.set(m.oe,[]);
+    oeMap.get(m.oe).push(m);
+  });
+  return apMap;
+}
+
+/* ============================================================
+   10) TABLA DE LA MATRIZ (estilo captura)
+   ============================================================ */
+function drawMatrizTabla(){
+  const cont=document.getElementById("tbl-mat");
+  if(!MATRIZ.length){ cont.innerHTML='<p class="empty-note">No hay filas de matriz para mostrar.</p>'; return; }
+  const apMap=groupMatriz();
+  let h='<table class="matriz"><thead><tr><th>Objetivo estratégico</th><th>Resultado esperado</th><th class="num">N° de operaciones</th><th>Divisiones</th></tr></thead><tbody>';
+  let pil=0;
+  apMap.forEach((oeMap,ap)=>{
+    pil++;
+    h+=`<tr class="pillar"><td colspan="4">Área prioritaria ${pil}: ${esc(ap)}</td></tr>`;
+    oeMap.forEach((res,oe)=>{
+      res.forEach((m,idx)=>{
+        h+='<tr class="er-row">';
+        if(idx===0) h+=`<td class="so" rowspan="${res.length}">${esc(oe)}</td>`;
+        h+=`<td class="er">${esc(m.re)}</td><td class="num">${m.ops.length}</td><td class="div">${esc(m.divs.join(', '))}</td></tr>`;
+      });
+    });
+  });
+  cont.innerHTML=h+'</tbody></table>';
+}
+function matrizRows(){
+  const headers=['Área prioritaria','Objetivo estratégico','Resultado esperado','N° de operaciones','Divisiones'];
+  const rows=[];
+  const apMap=groupMatriz();
+  apMap.forEach((oeMap,ap)=>{ oeMap.forEach((res,oe)=>{ res.forEach(m=>{ rows.push([ap,oe,m.re,m.ops.length,m.divs.join('; ')]); }); }); });
+  return {headers,rows};
+}
+
+/* ============================================================
+   11) COPIAR / DESCARGAR
+   ============================================================ */
+function toTSV(h,r){ return [h.join('\t')].concat(r.map(x=>x.join('\t'))).join('\n'); }
+function toCSV(h,r){ const e=v=>{v=String(v==null?'':v); return /[",\n;]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;}; return [h.map(e).join(',')].concat(r.map(x=>x.map(e).join(','))).join('\n'); }
+function flash(btn,msg){ const t=btn.textContent; btn.textContent=msg; setTimeout(()=>btn.textContent=t,1400); }
+function copyForExcel(get,btn){
+  const {headers,rows}=get(); const text=toTSV(headers,rows); const done=()=>flash(btn,'✓ Copiado');
+  if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text,btn,done)); }
+  else fallbackCopy(text,btn,done);
+}
+function fallbackCopy(text,btn,done){
+  const ta=document.createElement("textarea"); ta.value=text; ta.style.position="fixed"; ta.style.left="-9999px"; document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); done(); }catch(e){ flash(btn,"No se pudo copiar"); } document.body.removeChild(ta);
+}
+function downloadCSV(get,filename,btn){
+  const {headers,rows}=get();
+  const blob=new Blob(['\ufeff'+toCSV(headers,rows)],{type:"text/csv;charset=utf-8;"});
+  const url=URL.createObjectURL(blob); const a=document.createElement("a"); a.href=url; a.download=filename; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+  if(btn) flash(btn,'✓ Descargado');
+}
+document.getElementById("cp-clus").addEventListener("click",function(){ copyForExcel(clusRows,this); });
+document.getElementById("dl-clus").addEventListener("click",function(){ downloadCSV(clusRows,"clusters_tematicos.csv",this); });
+document.getElementById("cp-mat").addEventListener("click",function(){ copyForExcel(matrizRows,this); });
+document.getElementById("dl-mat").addEventListener("click",function(){ downloadCSV(matrizRows,"matriz_propuesta.csv",this); });
+
+/* ============================================================
+   12) (pestaña de árbol eliminada)
+   ============================================================ */
+function emptySvg(svg,msg){ svg.attr("viewBox","0 0 1180 160"); svg.append("text").attr("x",590).attr("y",80).attr("text-anchor","middle").attr("fill","var(--muted)").attr("font-size",15).text(msg); }
+
+/* ============================================================
+   13) RENDER + PESTAÑAS
+   ============================================================ */
+let drawn={};
+function renderAll(){ computeStats(); drawn={}; drawActive(document.querySelector(".tab.active").dataset.tab); }
+function drawActive(name){
+  if(drawn[name]) return; drawn[name]=true;
+  if(name==="barras") drawBarras();
+  else if(name==="burbujas") drawBurbujas();
+  else if(name==="clustabla") drawClusTabla();
+  else if(name==="matriztabla") drawMatrizTabla();
+}
+function switchTab(name){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.tab===name));
+  document.querySelectorAll(".tab-content").forEach(c=>c.classList.remove("active"));
+  document.getElementById("tab-"+name).classList.add("active");
+  drawActive(name);
+}
+window.addEventListener("resize",()=>{ drawn={}; drawActive(document.querySelector(".tab.active").dataset.tab); });
+
+/* ============================================================
+   14) ARRANQUE
+   ============================================================ */
+(function init(){
+  try{
+    // 1) ¿Cargó la librería D3? (la red puede bloquear el CDN)
+    if(typeof d3==="undefined" || !window.d3){
+      showBanner("<b>No se pudieron cargar las librerías de gráficos (D3).</b><br>"+
+        "Esto suele pasar cuando el archivo se abre desde la <b>vista previa de SharePoint</b> (que desactiva JavaScript) o cuando la red bloquea el CDN. "+
+        "Solución: <b>descargá</b> el archivo y abrilo con doble clic. Si persiste, pedí a IT habilitar <code>cdnjs.cloudflare.com</code> y <code>cdn.jsdelivr.net</code>.");
+      return;
+    }
+    // 2) Leer el bloque de datos (null-safe)
+    const el=document.getElementById("datos");
+    if(!el){ showBanner("<b>No se encontró el bloque de datos en la página.</b> El archivo pudo quedar mal formado al reemplazar el marcador de datos."); return; }
+    const raw=el.textContent;
+    // 3) Datos horneados o de ejemplo
+    if(looksBaked(raw)){
+      loadFromBlob(raw);
+      if(CLUSTERS.length===0 && MATRIZ.length===0){
+        const prev=raw.trim().slice(0,240).replace(/[<>]/g,'');
+        showBanner("<b>Se recibieron datos del flujo pero no se pudieron interpretar las tablas.</b><br>"+
+          "Verificá que la salida traiga los marcadores <code>===TABLA_CLUSTERS===</code> y <code>===TABLA_MATRIZ===</code>, y que cada fila esté entre comillas dobles.<br>"+
+          "<span style='color:#5d6b85'>Inicio de lo recibido:</span> <code>"+prev+"…</code>");
+      } else {
+        setStatus("Datos cargados desde el flujo — "+CLUSTERS.length+" clusters, "+MATRIZ.length+" resultados.");
+      }
+    } else {
+      loadFromBlob(EJEMPLO);
+      setStatus("Mostrando datos de ejemplo — cargá la salida del agente para ver los datos reales.");
+    }
+  }catch(err){
+    showBanner("<b>Error al procesar los datos:</b> "+String(err&&err.message||err)+"<br>Revisá el formato de la salida del agente (comillas dobles, marcadores de tabla).");
+  }
+})();
+</script>
+</body>
+</html>
